@@ -1,6 +1,6 @@
-package com.pepa.stockmarketapp.domain.data.mapper
+package com.pepa.stockmarketapp.data.mapper
 
-import com.pepa.stockmarketapp.domain.data.local.CompanyListingEntity
+import com.pepa.stockmarketapp.data.local.CompanyListingEntity
 import com.pepa.stockmarketapp.domain.model.CompanyListing
 
 fun CompanyListingEntity.toCompanyListing(): CompanyListing {

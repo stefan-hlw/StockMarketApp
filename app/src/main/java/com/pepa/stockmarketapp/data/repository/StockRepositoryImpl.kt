@@ -1,8 +1,10 @@
-package com.pepa.stockmarketapp.domain.data.repository
+package com.pepa.stockmarketapp.data.repository
 
-import com.pepa.stockmarketapp.domain.data.local.StockDatabase
-import com.pepa.stockmarketapp.domain.data.mapper.toCompanyListing
-import com.pepa.stockmarketapp.domain.data.remote.StockApi
+import com.pepa.stockmarketapp.data.csv.CSVParser
+import com.pepa.stockmarketapp.data.local.StockDatabase
+import com.pepa.stockmarketapp.data.mapper.toCompanyListing
+import com.pepa.stockmarketapp.data.mapper.toCompanyListingEntity
+import com.pepa.stockmarketapp.data.remote.StockApi
 import com.pepa.stockmarketapp.domain.model.CompanyListing
 import com.pepa.stockmarketapp.domain.repository.StockRepository
 import com.pepa.stockmarketapp.util.Resource
@@ -14,7 +16,8 @@ import javax.inject.Singleton
 @Singleton
 class StockRepositoryImpl @Inject constructor(
     private val api: StockApi,
-    private val db: StockDatabase
+    private val db: StockDatabase,
+    private val companyListingsParser: CSVParser<CompanyListing>
 ): StockRepository {
 
     private val dao = db.dao
@@ -41,12 +44,27 @@ class StockRepositoryImpl @Inject constructor(
 
             val remoteListings = runCatching {
                 val response = api.getListings()
-                Resource.Success(response)
+                companyListingsParser.parse(response.byteStream())
             }.getOrElse { e ->
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
+                null
             }
 
+            remoteListings?.let { listings ->
+                dao.clearCompanyListings()
+                dao.insertCompanyListings(
+                    listings.map {
+                        it.toCompanyListingEntity()
+                    }
+                )
+                emit(Resource.Success(
+                    data = dao
+                        .searchCompanyListing("")
+                        .map { it.toCompanyListing() }
+                ))
+                emit(Resource.Loading(false))
+            }
         }
     }
 }

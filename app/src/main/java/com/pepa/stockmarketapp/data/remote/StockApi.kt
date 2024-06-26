@@ -1,4 +1,4 @@
-package com.pepa.stockmarketapp.domain.data.remote
+package com.pepa.stockmarketapp.data.remote
 
 import okhttp3.ResponseBody
 import retrofit2.http.GET

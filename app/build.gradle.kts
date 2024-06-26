@@ -82,4 +82,5 @@ dependencies {
     implementation(libs.com.square.retrofit2.converter.gson)
     implementation(libs.com.square.okhttp3.okhttp)
     implementation(libs.com.square.okhttp3.logging.interceptor)
+    implementation(libs.opencsv)
 }
