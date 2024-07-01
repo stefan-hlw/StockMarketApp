@@ -87,4 +87,5 @@ dependencies {
     ksp(libs.com.google.dagger.hilt.android.compiler)
     ksp(libs.androidx.hilt.hilt.compiler)
     ksp(libs.compose.destinations)
+    ksp(libs.androidx.room.compiler)
 }

@@ -28,7 +28,7 @@ hiltNavigationCompose = "1.2.0"
 retrofit = "2.9.0"
 okhttp = "5.0.0-alpha.2"
 loggingInterceptor = "5.0.0-alpha.2"
-roomCommon = "2.6.1"
+room = "2.6.1"
 roomKtx = "2.6.1"
 openCSV = "4.6"
 swipeRefresh = "0.24.2-alpha"
@@ -62,7 +62,8 @@ com-square-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retr
 com-square-retrofit2-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 com-square-okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 com-square-okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor" }
-androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version = "room"}
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 opencsv = { group = "com.opencsv", name = "opencsv", version.ref = "openCSV" }
 compose-destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "composeDestinations"}
