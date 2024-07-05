@@ -1,4 +1,4 @@
-package com.pepa.stockmarketapp.domain.data.local
+package com.pepa.stockmarketapp.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.jetbrainsKotlinKapt)
+    alias(libs.plugins.kotlinKsp)
     alias(libs.plugins.google.dagger.hilt)
 }
 
@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.13"
     }
     packaging {
         resources {
@@ -74,12 +74,18 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.com.google.dagger.hilt.android)
-    kapt(libs.com.google.dagger.hilt.android.compiler)
-    kapt(libs.androidx.hilt.hilt.compiler)
-    implementation(libs.androidx.hilt.hilt.navigation.compose)
     implementation(libs.com.square.retrofit2.retrofit)
-    implementation(libs.com.square.retrofit2.converter.gson)
+    implementation(libs.com.square.retrofit2.converter.moshi)
     implementation(libs.com.square.okhttp3.okhttp)
     implementation(libs.com.square.okhttp3.logging.interceptor)
+    implementation(libs.opencsv)
+    implementation(libs.compose.destinations.core)
+    implementation(libs.swipe.refresh)
+    implementation(libs.com.google.dagger.hilt.android)
+    implementation(libs.androidx.hilt.hilt.navigation.compose)
+
+    ksp(libs.com.google.dagger.hilt.android.compiler)
+    ksp(libs.androidx.hilt.hilt.compiler)
+    ksp(libs.compose.destinations)
+    ksp(libs.androidx.room.compiler)
 }
